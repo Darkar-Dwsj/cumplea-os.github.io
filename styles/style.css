@@ -8,9 +8,12 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(95deg,
   #8a2be2,
   #9432cc);
+  position: relative;
   
 }
 
@@ -18,11 +21,11 @@ body {
   width: 640px;
   height: 400px;
   position: absolute;
-  margin: auto;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  margin: auto;
   -webkit-perspective: 1200px;
   perspective: 1200px;
   transition: 1s;

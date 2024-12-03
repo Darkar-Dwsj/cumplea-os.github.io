@@ -3,11 +3,188 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Happy Birthday Candy</title>
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(95deg,
+  #8a2be2,
+  #9432cc);
+  position: relative;
   
+}
+
+.card {
+  width: 640px;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-perspective: 1200px;
+  perspective: 1200px;
+  transition: 1s;
+}
+.card:hover {
+  transform: rotate(-5deg);
+}
+.card:hover .outside {
+  transform: rotateY(-130deg);
+}
+.outside,
+.inside {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  left: 50.1%;
+}
+.inside {
+  background: linear-gradient(to right, #e7e7e7, #ffffff 30%);
+  line-height: 3;
+  padding: 0 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  left: 50%;
+}
+.outside {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  z-index: 1;
+  transform-origin: left;
+  transition: 2s;
+  cursor: pointer;
+}
+.front,
+.back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: rotateX(0deg);
+}
+.front {
+  background-color: #ffffff;
+}
+.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(to left, #e7e7e7, #ffffff 30%);
+}
+.cake {
+  width: 100%;
+  position: absolute;
+  margin :auto;
+  bottom: 30px;
+}
+.top-layer,
+.middle-layer,
+.bottom-layer {
+  height: 80px;
+  width: 240px;
+  background-repeat: repeat;
+  background-size: 60px 100px;
+  background-position: 28px 0;
+  background-image: linear-gradient(
+      transparent 50px,
+      #fedbab 50px,
+      #fedbab 60px,
+      transparent 60px
+    ),
+    radial-gradient(circle at 30px 5px, #994c10 30px, #fcbf29 31px);
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  margin: auto;
+}
+.middle-layer {
+  transform: scale(0.85);
+  top: 6px;
+}
+.top-layer {
+  transform: scale(0.7);
+  top: 26px;
+}
+.candle {
+  height: 45px;
+  width: 15px;
+  background: repeating-linear-gradient(
+    45deg,
+    #fd3018 0,
+    #fd3018 5px,
+    #ffa89e 5px,
+    #ffa89e 10px
+  );
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 202px;
+}
+.candle:before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: #ffa500;
+  border-radius: 0 50% 50% 50%;
+  bottom: 48px;
+  transform: rotate(45deg);
+  left: -1px;
+}
+.outside p {
+  font-size: 21px;
+  text-transform: uppercase;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: 6px;
+  color: #000046;
+  font-weight: 600;
+}
+.inside h1 {
+  font-size: 85px;
+  line-height: 120px;
+  animation: heartbeat 1.5s infinite;
+}
+
+.inside p{
+  font-size: 15px;
+  line-height: 13px;
+}
+
+.heading {
+  display: flex;
+  height: 20%;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    20%, 60% {
+        transform: scale(1.2);
+    }
+    40%, 80% {
+        transform: scale(1.1);
+    }
+}
+  </style>
     <div class="card" onclick="lanzarConfetiPorTiempo()">
       <div class="outside">
         <div class="front">
@@ -32,6 +209,38 @@ Te deseo un día lleno de felicidad, amor y de buenos momentos porque te lo mere
       </div>
     </div>
       <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-      <script src="./scripts/script.js"></script>
+      <script>
+        // Función para lanzar confeti durante 5 segundos después de un delay de 1 segundo
+function lanzarConfetiPorTiempo() {
+  setTimeout(() => { // Delay de 1 segundo
+    const duration = 3000; // Duración de 5 segundos
+    const end = Date.now() + duration;
+
+    (function frame() {
+      // Lanzar partículas de confeti
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+      });
+
+      // Continuar mientras no se alcance el tiempo límite
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  }, 1000); // 1 segundo de delay
+}
+
+// Iniciar confeti al cargar la página
+window.onload = lanzarConfetiPorTiempo;
+      </script>
   </body>
 </html>
