@@ -14,18 +14,6 @@ body {
   
 }
 
-main {
-  width: 85vw;
-  height: 90vh;
-  margin: auto;
-  margin-top: 25px;
-  border: 2px solid #ffffff50;
-  border-radius: 10px;
-  backdrop-filter: blur(10);
-  box-shadow: 0 0 30px #000;
-  position: relative;
-}
-
 .card {
   width: 640px;
   height: 400px;
@@ -172,30 +160,3 @@ main {
   justify-content: center;
   align-items: center;
 };
-
-main {
-  width: 80vw;
-  height: 90vh;
-  margin: auto;
-  margin-top: 25px;
-  border: 2px solid #ffffff50;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px #000;
-
-  /* Centrando contenido con Flexbox */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; /* Necesario para el contexto de perspectiva */
-}
-
-.card {
-  width: 640px;
-  height: 400px;
-  /* Quita las propiedades de posicionamiento absoluto */
-  margin: auto; /* No se necesita centrado adicional */
-  -webkit-perspective: 1200px;
-  perspective: 1200px;
-  transition: 1s;
-}
