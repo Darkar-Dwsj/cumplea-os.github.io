@@ -185,6 +185,25 @@ body {
         transform: scale(1.1);
     }
 }
+
+@media (max-width: 768px) {
+  .card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 1s ease; /* Suaviza el efecto */
+  }
+
+  .card:hover {
+    transform: translate(-50%, -50%) rotate(-5deg); /* Combina el desplazamiento y la rotación */
+  }
+
+  .card:hover .outside {
+    transform: rotateY(-130deg); /* Mantiene la rotación de este elemento */
+    transition: transform 1s ease; /* Suaviza también la rotación */
+  }
+}
   </style>
     <div class="card" onclick="lanzarConfetiPorTiempo()">
       <div class="outside">
